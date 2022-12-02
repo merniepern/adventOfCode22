@@ -1,7 +1,4 @@
-def getMatchScore(
-    line,
-    questionTwo
-):
+def getMatchScore(line, questionTwo):
     match line[0]:
         case 'A':
             match line[2]:
@@ -27,10 +24,7 @@ def getMatchScore(
                     return 6 if questionTwo else 2
                 case 'Z':
                     return 7 if questionTwo else 6    
-
-
-scoreOne = 0
-scoreTwo = 0
+scoreOne, scoreTwo = 0, 0
 with open('2/input.txt') as input:
     for line in input:
         scoreOne += getMatchScore(line, False)
