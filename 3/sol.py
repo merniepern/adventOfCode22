@@ -1,9 +1,5 @@
 def getPriority(char):
-    asciiVal = ord(char)
-    if asciiVal > 90:
-        return asciiVal - 96
-    else:
-        return asciiVal - 38
+    return ord(char) - 96 if (ord(char) > 90) else ord(char) - 38
 
 def getCommonElementPriority(bags):
     for item in bags.pop(0):
@@ -20,16 +16,11 @@ with open('3/input.txt') as input:
         # solution part one
         compOne = set(backpack[:len(backpack)//2])
         compTwo = set(backpack[len(backpack)//2:])
-        compartments = [compOne, compTwo]
-        resultOne += getCommonElementPriority(compartments)
+        resultOne += getCommonElementPriority([compOne, compTwo])
         # solution part two
-        if elves < 2:
-            backpacks.append(backpack)
-            elves += 1
-        else:
-            backpacks.append(backpack)
+        backpacks.append(set(backpack.rstrip()))
+        if len(backpacks) == 3:
             resultTwo += getCommonElementPriority(backpacks)
             backpacks.clear()
-            elves = 0
 print('solution part one: ' + str(resultOne))
 print('solution part two: ' + str(resultTwo))
